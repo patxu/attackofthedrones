@@ -1,0 +1,1 @@
+/usr/bin/c++   -g    CMakeFiles/control.dir/src/control/control.cpp.o  -o control -rdynamic ../lib/libcflie.a /usr/local/lib/libLeap.so -lusb-1.0 -Wl,-rpath,/usr/local/lib 

@@ -1,0 +1,17 @@
+#TIMELINE
+#authors: Yondon Fu and Patrick Xu
+
+Mon: read manual, install components, leap sensor
+Tue: assemble, design spec, understand functions
+Wed: get the coptor hover
+Thu: get variable thrust working. finalize information needed for tomorrow's 
+   design spec
+Fri: done with design review
+   To Do:
+      correct pitch and roll setting- threshold values good?
+      correct thrust setting- do we need to modify factor?
+      is the landing occuring too fast/slow?
+Sun: done with baseline
+
+Mon: implement fine-grain controls
+Wed: done with project extension

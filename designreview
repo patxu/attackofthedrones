@@ -1,0 +1,57 @@
+#Design Review for 2/28/2014
+#authors: Yondon Fu and Patrck Xu
+
+#threaded design diagram - DONE
+   the same threaded design as shown in the slides
+   two threads: leap and coptor
+
+#data structures (if any) - DONE
+   leap_hand_ref, CCrazyflie, CCrazyRadio (just the given ones)
+
+#functional decomposition - DONE
+   on_frame()- uses the leap library to interpret gestures and change global
+      variables according. also changes the state global variable
+   main_control()- changes the state depending on the state global variable and 
+      calls the appropriate function depending on the state to adjust thrust,
+      pitch, or roll
+	 if the state is hover, a predetermined thrust value will be used with
+	    a variable pitch and roll (see hoverNormal())
+	 the the sate is normal, a variable thrust, pitch, and roll will be 
+	    used (see flyNormal())
+   flyNormal()- sets the thrust, pitch, and roll based on global variables
+   hoverNormal()- sets the pitch and roll based on global variables but sets
+      a static thruts number that tells the coptor to maintain altitude
+   setpitchandroll- sets the pitch and roll of the coptor to the globally-
+      defined variables
+   
+#project extension
+   fine-grain gestures- we want to be able to control the coptor with greater
+      control by implementing fine grain gestures. we will still utilize a 
+      threshold for roll and pitch, but beyond the threshold we will be able to
+      set varying values for roll and pitch. we hope that this may allow us to 
+      also perform more interesting manuevers
+
+#demo - DONE
+
+#timeline - DONE
+   see "./timeline"
+
+   Mon: read manual, install components, leap sensor
+   Tue: assemble, design spec, understand functions
+   Wed: get the coptor hover
+   Thu: get variable thrust working. finalize information needed for tomorrow's 
+      design spec
+   Fri: done with design review, begin implementing directionality control
+   Sun: done with baseline
+
+   Mon: begin implementing fine-grain controls
+   Wed: done with project extension
+
+#who does what - DONE
+   Yondon- programs control.cpp which includes main, the leap thread, and the
+      copter thread
+   Pat- programs CCrazyflie.cpp which deals with adjusting thrust/pitch/roll 
+      on the cflie and then sending the correct info to the cflie in packets.
+      also reads in information from the log, such as battery and the 
+      barometer for use in control.cpp
+      write up design review spec

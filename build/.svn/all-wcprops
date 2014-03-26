@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/classes/cs50-W14/!svn/ver/5102/attackofthedrones/build
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/classes/cs50-W14/!svn/ver/5102/attackofthedrones/build/Makefile
+END
+CMakeCache.txt
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/classes/cs50-W14/!svn/ver/5102/attackofthedrones/build/CMakeCache.txt
+END
+cmake_install.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/classes/cs50-W14/!svn/ver/5102/attackofthedrones/build/cmake_install.cmake
+END

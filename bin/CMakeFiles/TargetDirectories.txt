@@ -1,0 +1,2 @@
+/home/pat-ubuntu/code/attackofthedrones/bin/CMakeFiles/cflie.dir
+/home/pat-ubuntu/code/attackofthedrones/bin/CMakeFiles/control.dir
