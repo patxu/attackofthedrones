@@ -1,14 +1,13 @@
-#CS50 Final Project
-#Crazyflie and Leap Motion sensor
+#CS50 Final Project: Crazyflie and Leap Motion sensor
 ##Authors
 Yondon Fu and Patrick Xu
 
 
 There is a detailed report on the entire assignment in report.pdf.
 
-The project involved a Crazyflie nanocopter and a Leap Motion Sensor. We used the sensor
-to track hand gestures to control the nanocopter. Signals were sent to the nanocopter using
-a USB radio.
+The project involved a Crazyflie nanocopter and a Leap Motion Sensor. We 
+used the sensor to track hand gestures to control the nanocopter. Signals 
+were sent to the nanocopter using a USB radio.
 
 The nanocopters run an embedded OS named RTOS. We were given to opportunity to write and flash
 our own firmware onto the nanocopter but chose not to. My partner and I focused on writing
