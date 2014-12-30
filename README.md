@@ -3,16 +3,16 @@
 Yondon Fu and Patrick Xu
 
 
-There is a detailed report on the entire assignment in report.pdf.
+There is a detailed report on the general design, specifications (finite state machine, data structures) can be found in report.pdf.
 
-The project involved a Crazyflie nanocopter and a Leap Motion Sensor. We 
-used the sensor to track hand gestures to control the nanocopter. Signals 
-were sent to the nanocopter using a USB radio.
+The project focused on programming a Crazyflie nanocopter and a Leap Motion 
+Sensor. By implemented custom gestures, we are able to use the sensor to 
+track hand gestures to control the nanocopter. Signals were sent to the
+nanocopter using a USB radio device that was included with the Crazyflie.
 
-The nanocopters run an embedded OS named RTOS. We were given to opportunity to write and flash
-our own firmware onto the nanocopter but chose not to. My partner and I focused on writing
-the code that would allow the motion sensor to communicate with the nanocopter. Some pieces
-of code were already written for us. 
+The nanocopters run an embedded OS named RTOS. My partner and I focused on
+writing the code that would allow the motion sensor to communicate with the
+nanocopter. Some pieces of code were already written for us. 
 
 ## FLYING GUIDE
 
