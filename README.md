@@ -1,4 +1,4 @@
-#CS50 Final Project: Crazyflie and Leap Motion sensor
+#CS50 Final Project: Hand Gesture-based Nanocopter Control
 ##Authors: Yondon Fu and Patrick Xu
 
 ##Overview
