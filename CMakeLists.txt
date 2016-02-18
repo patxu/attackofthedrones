@@ -13,10 +13,10 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 
 find_library(USB_LIB usb-1.0)
 #for OSX
-#find_library(LEAP_LIBRARY_NAME libLeap.dylib)
+find_library(LEAP_LIBRARY_NAME libLeap.dylib)
 
 #for Ubuntu
-find_library(LEAP_LIBRARY_NAME libLeap.so)
+#find_library(LEAP_LIBRARY_NAME libLeap.so)
 
 
 add_library(${PROJECT_NAME}
@@ -34,7 +34,7 @@ add_library(${PROJECT_NAME}
 
 add_executable(control src/control/control.cpp)
 
-target_link_libraries(${PROJECT_NAME} ${USB_LIB})
+target_link_libraries(${PROJECT_NAME} /opt/lib/libusb-1.0.dylib) # ${USB_LIB}) # I don't know why we can't search for both libs
 target_link_libraries(control ${PROJECT_NAME} ${LEAP_LIBRARY_NAME})
 
 install(FILES include/cflie/*.h DESTINATION include)

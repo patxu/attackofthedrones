@@ -1,0 +1,2 @@
+/Users/patxu/code/attackofthedrones/CMakeFiles/control.dir
+/Users/patxu/code/attackofthedrones/CMakeFiles/cflie.dir
