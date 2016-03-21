@@ -9,15 +9,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/")
 set(${PROJECT_NAME}_VERSION_MAJOR_0)
 set(${PROJECT_NAME}_VERSION_MINOR_1)
 
-include_directories("${PROJECT_SOURCE_DIR}/include")
+include_directories(
+  "${PROJECT_SOURCE_DIR}/include"
+)
 
 find_library(USB_LIB usb-1.0)
 #for OSX
 find_library(LEAP_LIBRARY_NAME libLeap.dylib)
-
-#for Ubuntu
-#find_library(LEAP_LIBRARY_NAME libLeap.so)
-
 
 add_library(${PROJECT_NAME}
   src/cflie/CCrazyRadio.cpp
@@ -36,6 +34,7 @@ add_executable(control src/control/control.cpp)
 
 target_link_libraries(${PROJECT_NAME} /opt/lib/libusb-1.0.dylib) # ${USB_LIB}) # I don't know why we can't search for both libs
 target_link_libraries(control ${PROJECT_NAME} ${LEAP_LIBRARY_NAME})
+target_link_libraries(control ${PROJECT_NAME} include/Leap.h)
 
 install(FILES include/cflie/*.h DESTINATION include)
 install(FILES lib/* DESTINATION lib)

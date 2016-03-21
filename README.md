@@ -31,6 +31,9 @@ Try following the [Crazyflie guide](https://github.com/bitcraze/crazyflie-client
   - unzip, go to directory
   - `python setup.py install`
 
+### Compile the code
+Here, there may be system-dependent things that need to be changed. Remove or backup `bin`, then run `mkdir bin`. Then, `cd bin` and `cmake ..`. This will compile the files in the current directory, `bin`.
+
 ### Run the Code
 1. run ./flyme.sh
 1. press `enter` to start up copter- keep clear of the Leap Motion

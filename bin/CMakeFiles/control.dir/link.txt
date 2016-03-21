@@ -1,1 +1,1 @@
-/usr/bin/c++   -g    CMakeFiles/control.dir/src/control/control.cpp.o  -o control -rdynamic ../lib/libcflie.a /usr/local/lib/libLeap.so -lusb-1.0 -Wl,-rpath,/usr/local/lib 
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/control.dir/src/control/control.cpp.o  -o control  ../lib/libcflie.a /opt/local/lib/libLeap.dylib ../lib/libcflie.a -linclude/Leap.h /opt/lib/libusb-1.0.dylib 
