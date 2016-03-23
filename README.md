@@ -69,3 +69,5 @@ This is the Crazyflie client and will determine the channel ID of the quadcopter
 
 - HOVER -> NORMAL: show 2 or more fingers with your unused hand
 - HOVER -> LAND: flash a fist with your unused hand and then also make your dominant hand into a fist
+
+Note: the propeller between the red and green lights is "forward". See more [here](https://wiki.bitcraze.io/projects:crazyflie:userguide:index).

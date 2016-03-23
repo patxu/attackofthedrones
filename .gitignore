@@ -1,5 +1,7 @@
 .DS_STORE
 
+bin/
+
 ### Standard C and C++ ignore
 
 # Object files

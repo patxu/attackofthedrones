@@ -90,7 +90,7 @@ pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 //	        |
 //         - P
 #define TRIM_ROLL 0
-#define TRIM_PITCH -.2
+#define TRIM_PITCH 0
 
 // Threshold values that are used when calculating roll and pitch. If the hand
 // is within these values, roll and pitch are zero
