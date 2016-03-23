@@ -32,7 +32,7 @@ Try following the [Crazyflie startup guide](https://github.com/bitcraze/crazyfli
 1. libusb
   - `brew install libusb`
 1. libLeap
-  - `sudo cp bin/libLeap.dylib /opt/local/lib` 
+  - `sudo cp bin/libLeap.dylib /opt/local/lib ` 
 
 ### Compile
 Note: there may be system-dependent things that need to be changed.
