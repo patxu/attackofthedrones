@@ -195,7 +195,7 @@ USB_LIB:FILEPATH=/opt/local/lib/libusb-1.0.dylib
 cflie_BINARY_DIR:STATIC=/Users/patxu/code/attackofthedrones/bin
 
 //Dependencies for the target
-cflie_LIB_DEPENDS:STATIC=general;/opt/lib/libusb-1.0.dylib;
+cflie_LIB_DEPENDS:STATIC=general;/opt/local/lib/libusb-1.0.dylib;
 
 //Value Computed by CMake
 cflie_SOURCE_DIR:STATIC=/Users/patxu/code/attackofthedrones

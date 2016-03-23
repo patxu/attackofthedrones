@@ -83,8 +83,7 @@ control: CMakeFiles/control.dir/src/control/control.cpp.o
 control: CMakeFiles/control.dir/build.make
 control: ../lib/libcflie.a
 control: /opt/local/lib/libLeap.dylib
-control: ../lib/libcflie.a
-control: /opt/lib/libusb-1.0.dylib
+control: /opt/local/lib/libusb-1.0.dylib
 control: CMakeFiles/control.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable control"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/control.dir/link.txt --verbose=$(VERBOSE)

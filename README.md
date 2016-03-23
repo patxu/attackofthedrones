@@ -31,9 +31,13 @@ Try following the [Crazyflie startup guide](https://github.com/bitcraze/crazyfli
   - within unzipped directory: `python setup.py install`
 1. libusb
   - `brew install libusb`
+1. libLeap
+  - `sudo cp bin/libLeap.dylib /opt/local/lib` 
 
 ### Compile
-Note: there may be system-dependent things that need to be changed. Remove or backup `bin`, then run `mkdir bin`. Then, `cd bin` and `cmake ..`. This will compile the files in the current directory, `bin`.
+Note: there may be system-dependent things that need to be changed.
+1. `cd bin`
+1. `cmake ..`
 
 ### Run
 1. run ./flyme.sh
