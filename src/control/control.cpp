@@ -40,7 +40,7 @@
 // HOVER -> LAND: on the side, flash a fist if your unused hand. QUICKLY make your
 //		  dominant hand into a fist as well
 
-// LAND -> NORMAL: show the leap 1 hand 
+// LAND -> NORMAL: show the leap 1 hand
 
 // NORMAL: in NORMAL mode, you are responsible for thrust, pitch, and roll. It is
 //	   advised to reach a desired altitude in NORMAl and switch to HOVER
@@ -65,7 +65,7 @@ using namespace std;
 pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 //CS50_TODO:  define your own states
-//The states of the copter 
+//The states of the copter
 #define NORMAL_STATE 1
 #define HOVER_STATE 2 // Maintain current altitude
 #define PRE_NORMAL_STATE 3 // Transition between NORMAL and HOVER
@@ -90,7 +90,7 @@ pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 //	    |
 //         - P
 #define TRIM_ROLL 0
-#define TRIM_PITCH -.2 
+#define TRIM_PITCH -.2
 
 // Threshold values that are used when calculating roll and pitch. If the hand
 // is within these values, roll and pitch are zero
@@ -157,7 +157,7 @@ float current_yaw;
 // Current thrust value of the copter
 float current_thrust;
 
-// Last time copter state was updated. These two variables are used to determine 
+// Last time copter state was updated. These two variables are used to determine
 // when to send out TIME_OUT_SIG
 double lastUpdate;
 double currTime;
@@ -167,7 +167,7 @@ CCrazyflie *cflieCopter=NULL;
 
 //CS50_TODO:  define other helper function here
 //In normal state, the flyNormal function will be called, set different parameter
-//In hover state, different function should be called, because at that time, we should set the thrust as a const value(32767), see reference 
+//In hover state, different function should be called, because at that time, we should set the thrust as a const value(32767), see reference
 //(http://forum.bitcraze.se/viewtopic.php?f=6&t=523&start=20)
 //hoverNormal(CCrazyflie *cflieCopter) -> sets thrust to const value(32767)
 //We can still control direction when a copter is hovering, but we cannot control thrust -> it will be constant
@@ -187,10 +187,10 @@ void flyNormal(CCrazyflie *cflieCopter) {
   setYaw(cflieCopter, 0);
 }
 
-// Make the roll and pitch to zero and then slowly subtract the thrust until it 
+// Make the roll and pitch to zero and then slowly subtract the thrust until it
 // reaches the starting thrust. It will also quickly bring down the thrust if it
 // already set very high
-void land(CCrazyflie *cflieCopter) { 
+void land(CCrazyflie *cflieCopter) {
   setPitch(cflieCopter, 0);
   setRoll(cflieCopter, 0);
   setYaw(cflieCopter, 0);
@@ -208,7 +208,7 @@ void land(CCrazyflie *cflieCopter) {
 // Sets the thrust based on the height of the hand. The thrust will vary between
 // MIN_THRUST and MAX_THRUST depending on the height of the hand. If the
 // hand is too height then the thrust is set to MAX_THRUST and
-// if the hand is too low then the thrust is set to MIN_THRUST 
+// if the hand is too low then the thrust is set to MIN_THRUST
 // NOTE: if the hand goes out of frame, the coptor will still go into
 // LAND mode. The min and max heights allow some warning for the user if his hand
 // is about to leave the recording area.
@@ -219,10 +219,10 @@ void updateThrust(double height){
 
   //variable thrust as described above
   if ((height - MIN_HEIGHT) > MAX_HEIGHT) {// too high
-    current_thrust = MAX_THRUST; 
+    current_thrust = MAX_THRUST;
     printf("WARNING: lost hand- too HIGH!\n");
   } else if (height < MIN_HEIGHT) {// too low
-    current_thrust = MIN_THRUST; 
+    current_thrust = MIN_THRUST;
     printf("WARNING: lost hand- too LOW!\n");
   } else {// just right
     double thrust = ((height - MIN_HEIGHT) / MAX_HEIGHT);
@@ -230,12 +230,12 @@ void updateThrust(double height){
   }
 }
 
-// Sets the yaw depending on the height of the hand. If the height 
-//is inside the threshold then the yaw is set. 
+// Sets the yaw depending on the height of the hand. If the height
+//is inside the threshold then the yaw is set.
 // NOTE: yaw is only changed when in HOVER mode
 void updateYaw(double height){
   if (height > MAX_HEIGHT - YAW_THRESHOLD){
-    current_yaw = 20 * SENSITIVITY; 
+    current_yaw = 20 * SENSITIVITY;
   } else if (height < MIN_HEIGHT + YAW_THRESHOLD){
     current_yaw = -20 * SENSITIVITY;
   } else {
@@ -266,7 +266,7 @@ void on_exit(leap_controller_ref controller, void *user_info)
 }
 
 //This function will be called when leapmotion detects a hand gesture
-// The function has three main components, each checking for a specific 
+// The function has three main components, each checking for a specific
 // number of hands. Depending on the number of hands and the fingers,
 // the current_signal will be set. The function also takes in information
 // about the hand and updates the flight parameters.
@@ -330,7 +330,7 @@ void on_frame(leap_controller_ref controller, void *user_info)
       pthread_mutex_unlock(&mutex1);
       return;
     }
-  } 
+  }
 
   // Two hand gestures:
   // 1 hand + 2 fingers -> HOVER or NORMAL to a TRANSITION state
@@ -353,7 +353,7 @@ void on_frame(leap_controller_ref controller, void *user_info)
       current_signal = LAND_SIG;
       pthread_mutex_unlock(&mutex1);
       return;
-    } 
+    }
     // Make hand and fingers refer back to the first hand
     hand = leap_frame_hand_at_index(frame, 0);
     fingers = leap_hand_fingers_count(hand);
@@ -382,7 +382,7 @@ void on_frame(leap_controller_ref controller, void *user_info)
     updateThrust(pos.y);
   } //if in HOVER/PREHOVER states, adjust the yaw
   else if (current_state != LAND_STATE){
-    updateYaw(pos.y);  
+    updateYaw(pos.y);
   }
 
   // SET PITCH AND ROLL
@@ -401,7 +401,7 @@ void on_frame(leap_controller_ref controller, void *user_info)
     if (fingers > 3){//enough fingers to warrant a change in pitch and roll
       if (dir.x < POS_ROL_THRESHOLD && dir.x > NEG_ROL_THRESHOLD) {//within threshold
 	current_roll = 0;
-      } 
+      }
       else{// past threshold
 	if (dir.x > POS_ROL_THRESHOLD){
 	  current_roll = (MAX_ROLL * (dir.x - POS_ROL_THRESHOLD))  * SENSITIVITY;
@@ -427,12 +427,12 @@ void on_frame(leap_controller_ref controller, void *user_info)
     }
   }
 
-  //CS50_TODO 
+  //CS50_TODO
   //*pseudocode*
   /*
      The above code show a simple example on get the velocity infomarion of the hand
 
-     You need to find headers in the Leap folder, see what function you can call to 
+     You need to find headers in the Leap folder, see what function you can call to
      examine the hand's parameter
 
      void leap_hand_direction(leap_hand_ref hand, leap_vector *out_result)
@@ -445,7 +445,7 @@ void on_frame(leap_controller_ref controller, void *user_info)
 
      My personal solution use the orientation of hand to compuate the get pitch and roll
      use the position of hand to get the thrust
-     Use a "swipe" gesture to enable/disable the hover mode 
+     Use a "swipe" gesture to enable/disable the hover mode
 
      you should also send out the signals in this function:
 
@@ -468,12 +468,12 @@ void on_frame(leap_controller_ref controller, void *user_info)
 
      This function should only send one signal each time, and only send signals when the last signal has been processed
 
-     Recall that after the commander thread will set the current_signal back to NO_SIG, so we will only send out signal 
+     Recall that after the commander thread will set the current_signal back to NO_SIG, so we will only send out signal
      if we find this variable is equal to NO_SIG
 
      You may use lock to lock the global variable you use to synchronize the two thread
    */
-  //*pseudocode* 
+  //*pseudocode*
   leap_frame_release(frame);
   // Unlock global variables
   pthread_mutex_unlock(&mutex1);
@@ -549,7 +549,7 @@ void* main_control(void * param){
     current_signal = NO_SIG;
 
     // Call helper functions based on the state to set thrust, pitch, and roll
-    // When a coptor is in a TRANSITON state, it behaves as if it is already 
+    // When a coptor is in a TRANSITON state, it behaves as if it is already
     // in the next state. This makes it feel as if the coptor goes from one state
     // directly into the next, even though there is a time out period to prevent
     // for repeatedly switching states
@@ -585,8 +585,8 @@ int main(int argc, char **argv) {
   //CS50_TODO
   //The second number is channel ID
   //The default channel ID is 10
-  //Each group will have a unique ID in the demo day 
-  CCrazyRadioConstructor(crRadio,"radio://0/11/250K");
+  //Each group will have a unique ID in the demo day
+  CCrazyRadioConstructor(crRadio,"radio://0/38/250K");
 
   if(startRadio(crRadio)) {
     cflieCopter = new CCrazyflie;
@@ -615,7 +615,7 @@ int main(int argc, char **argv) {
     while(1) {}
     exit(0);
 
-  } 
+  }
   else {
     printf("%s\n", "Could not connect to dongle. Did you plug it in?");
   }

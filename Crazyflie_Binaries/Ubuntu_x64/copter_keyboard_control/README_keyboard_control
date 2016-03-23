@@ -1,0 +1,4 @@
+The libflie_testcopter is a python client, just put it in the Virtual Machine, 
+and run the keyboard_contro.py in the lib folder as "python keyboard_control.py"
+
+You can then use keyboard to control the crazyflie (see the information in the program)

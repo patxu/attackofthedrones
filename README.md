@@ -12,27 +12,31 @@ The nanocopters run an embedded OS named RTOS. We focused on writing the code th
 ## Getting Started
 Try following the [Crazyflie startup guide](https://github.com/bitcraze/crazyflie-clients-python/blob/master/README.md). This didn't fully work for me, so I document my setup below. Follow at your own risk!
 
-### Crazyflie Dependencies
+### Installation (using MacPorts)
 1. macports (package installer)
-  - http://www.macports.org/install.php
-  - might need to install xcode
-  - use a new terminal window to use macports
+  - [Install if needed](http://www.macports.org/install.php)
+  - Otherwise, upgrade:
+    ```
+    sudo port selfupdate
+    sudo port upgrade outdated
+    ```
+  - open a new terminal window to use macports
 1. libusb
   - `sudo port install libusb`
   - might need to install Xcode command line tools
 1. pyusb
-  - instructions: https://github.com/walac/pyusb
+  - `python -m pip install "pyusb>=1.0.0b2"`
 1. pygame
   - `pip install hg+http://bitbucket.org/pygame/pygame`
 1. pyQT
   - `sudo port install py34-pyqt4`
 1. pyqtgraph
-  - download "source package": http://www.pyqtgraph.org/
-  - within unzipped directory: `python setup.py install`
+  - [download "source package"](http://www.pyqtgraph.org/)
+  - `python setup.py install`
 1. libusb
   - `brew install libusb`
 1. libLeap
-  - `sudo cp bin/libLeap.dylib /opt/local/lib ` 
+  - `sudo cp bin/libLeap.dylib /opt/local/lib `
 
 ### Compile
 Note: there may be system-dependent things that need to be changed.
@@ -48,7 +52,7 @@ Note: there may be system-dependent things that need to be changed.
 
 ### State Overview
 
-- NORMAL: in NORMAL mode, you are responsible for thrust, pitch, and roll. It is advised to reach a desired altitude in NORMAl and then switch to HOVER
+- NORMAL: in NORMAL mode, you are responsible for thrust, pitch, and roll. It is advised to reach a desired altitude in NORMAL and then switch to HOVER
 
 - HOVER: in HOVER mode, you are responsible for pitch, roll, and yaw. You are advised to keep your hand in the middle (height-wise) in order to not change yaw unless necessary
 
