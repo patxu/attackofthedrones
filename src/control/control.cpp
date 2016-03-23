@@ -83,11 +83,11 @@ pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 //trim value in case the coptor is not balanced
 //         + P
-//	    |
+//	        |
 //          |
 // + R -----+----- - R
-//	    |
-//	    |
+//	        |
+//	        |
 //         - P
 #define TRIM_ROLL 0
 #define TRIM_PITCH -.2
@@ -120,7 +120,7 @@ pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 // Used to calculate the factor for the thrust; max and min height we will use
 // to calculate thrust. We will warn the user when his hand is not in this range
-#define MAX_HEIGHT 500
+#define MAX_HEIGHT 450
 #define MIN_HEIGHT 60
 
 // Lowest thrust in NORMAL mode
@@ -140,6 +140,16 @@ pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 // Constant inveral for sending out TIME_OUT_SIG
 #define TIME_OUT_INTERVAL 1000
+
+// colors
+#define KNRM  "\x1B[0m"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
 
 //CS50_TODO:  define other variables here
 //Such as: current states, current thrust
@@ -162,7 +172,10 @@ float current_thrust;
 double lastUpdate;
 double currTime;
 
-//The pointer to the crazy flie data structure
+// Whether or not the hand is currently being tracked
+bool trackingHand = false;
+
+// The pointer to the crazy flie data structure
 CCrazyflie *cflieCopter=NULL;
 
 //CS50_TODO:  define other helper function here
@@ -217,16 +230,27 @@ void updateThrust(double height){
   //double factor = 52 - (4 * batteryLevel(cflieCopter));
   //current_thrust = 38500 + height * factor;
 
+  // printf("%f\n", height);
   //variable thrust as described above
-  if ((height - MIN_HEIGHT) > MAX_HEIGHT) {// too high
-    current_thrust = MAX_THRUST;
-    printf("WARNING: lost hand- too HIGH!\n");
-  } else if (height < MIN_HEIGHT) {// too low
-    current_thrust = MIN_THRUST;
-    printf("WARNING: lost hand- too LOW!\n");
-  } else {// just right
+  if ((height) > MAX_HEIGHT) { // too high
+    if (trackingHand) { // only error if we haven't already errored
+      current_thrust = MAX_THRUST;
+      printf(KRED "WARNING: lost hand- too HIGH!\n\n");
+      trackingHand = false;
+    }
+  } else if (height < MIN_HEIGHT && trackingHand) { // too low
+    if (trackingHand) { // only error if we haven't already errored
+      current_thrust = MIN_THRUST;
+      printf(KRED "WARNING: lost hand- too LOW!\n\n");
+      trackingHand = false;
+    }
+  } else if (height > MIN_HEIGHT) { // just right
+    if (!trackingHand) {
+      printf(KGRN "Hand Tracked\n\n");
+    }
     double thrust = ((height - MIN_HEIGHT) / MAX_HEIGHT);
     current_thrust = thrust * (MAX_THRUST - MIN_THRUST) + MIN_THRUST;
+    trackingHand = true;
   }
 }
 
@@ -509,17 +533,17 @@ void* main_control(void * param){
 	  currTime = currentTime();
 	  if (currTime - lastUpdate > TIME_OUT_INTERVAL) {
 	    current_state = NORMAL_STATE;
-	    printf("STATE: NORMAL\n\n");
+	    printf(KNRM "STATE: NORMAL\n\n");
 	    lastUpdate = currTime;
 	  }
 	  break;
 	case TIME_OUT_SIG:
 	  if(current_state == PRE_NORMAL_STATE) {
 	    current_state = NORMAL_STATE;
-	    printf("STATE: NORMAL\n\n");
+	    printf(KNRM "STATE: NORMAL\n\n");
 	  } else if(current_state == PRE_HOVER_STATE) {
 	    current_state = HOVER_STATE;
-	    printf("STATE: HOVER\n\n");
+	    printf(KNRM "STATE: HOVER\n\n");
 	  }
 	  break;
 	case CHANGE_HOVER_SIG:
@@ -527,18 +551,18 @@ void* main_control(void * param){
 	  if (currTime - lastUpdate > TIME_OUT_INTERVAL) {
 	    if(current_state == NORMAL_STATE) {
 	      current_state = PRE_HOVER_STATE;
-	      printf("Switching to HOVER...\n");
+	      printf(KNRM "Switching to HOVER...\n");
 	      lastUpdate = currTime;
 	    } else if(current_state == HOVER_STATE) {
 	      current_state = PRE_NORMAL_STATE;
-	      printf("Switching to NORMAL...\n");
+	      printf(KNRM "Switching to NORMAL...\n");
 	      lastUpdate = currTime;
 	    }
 	  }
 	  break;
 	case LAND_SIG:
 	  current_state = LAND_STATE;
-	  printf("STATE: LAND\n\n");
+	  printf(KNRM "STATE: LAND\n\n");
 	  break;
 	default:
 	  break;

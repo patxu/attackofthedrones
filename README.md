@@ -39,8 +39,9 @@ This is the Crazyflie client and will determine the channel ID of the quadcopter
 1. `cd crazyflie-clients-python`
 1. `pip install -e .`
 1. `/opt/local/bin/python3.4 bin/cfclient`
-1. Select `Select an interface`
+1. Select `Select an interface` to determine the channel ID
   - radio://0/`[Channel ID]`/250k
+1. Set this channel ID in `control.cpp` line 589
 
 ### Compiling our Client
 1. `cd bin`
