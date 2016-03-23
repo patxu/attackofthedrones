@@ -21,30 +21,33 @@ Try following the [Crazyflie startup guide](https://github.com/bitcraze/crazyfli
     sudo port upgrade outdated
     ```
   - open a new terminal window to use macports
-1. libusb
-  - `sudo port install libusb`
-  - might need to install Xcode command line tools
+1. install dependencies (this might take a while)
+  - `sudo port install libusb python34 py34-SDL2 py34-pyqt4 py34-pip`
 1. pyusb
   - `python -m pip install "pyusb>=1.0.0b2"`
-1. pygame
-  - `pip install hg+http://bitbucket.org/pygame/pygame`
-1. pyQT
-  - `sudo port install py34-pyqt4`
-1. pyqtgraph
-  - [download "source package"](http://www.pyqtgraph.org/)
-  - `python setup.py install`
-1. libusb
-  - `brew install libusb`
-1. libLeap
+1. Possibly optional?
+  1. pygame
+    - `pip install hg+http://bitbucket.org/pygame/pygame`
+  1. pyqtgraph (might not be necessary?)
+    - [download "source package"](http://www.pyqtgraph.org/)
+    - `python setup.py install`
+1. move libLeap to correct location (better way to do this?)
   - `sudo cp bin/libLeap.dylib /opt/local/lib `
 
-### Compile
-Note: there may be system-dependent things that need to be changed.
+### Compiling the Crazyflie Client
+This is the Crazyflie client and will determine the channel ID of the quadcopter. See [here](https://github.com/bitcraze/crazyflie-clients-python) if you're unable to compile.
+1. `cd crazyflie-clients-python`
+1. `pip install -e .`
+1. `/opt/local/bin/python3.4 bin/cfclient`
+1. Select `Select an interface`
+  - radio://0/`[Channel ID]`/250k
+
+### Compiling our Client
 1. `cd bin`
 1. `cmake ..`
 
 ### Run
-1. run ./flyme.sh
+1. `./flyme.sh`
 1. stay clear of the Leap
 1. press `enter` to start up copter
 1. bring one hand with spread fingers about 5cm over the Leap
@@ -52,9 +55,9 @@ Note: there may be system-dependent things that need to be changed.
 
 ### State Overview
 
-- NORMAL: in NORMAL mode, you are responsible for thrust, pitch, and roll. It is advised to reach a desired altitude in NORMAL and then switch to HOVER
+- NORMAL: in NORMAL mode, you are responsible for thrust (height), pitch (forwards and back), and roll. It is advised to reach a desired altitude in NORMAL and then switch to HOVER
 
-- HOVER: in HOVER mode, you are responsible for pitch, roll, and yaw. You are advised to keep your hand in the middle (height-wise) in order to not change yaw unless necessary
+- HOVER: in HOVER mode, the copter holds a steady height and you are responsible for pitch, roll, and yaw. Keep your hand at a steady height in order to not change yaw unless necessary
 
 ### Changing States
 
