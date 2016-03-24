@@ -36,6 +36,7 @@ Try following the [Crazyflie startup guide](https://github.com/bitcraze/crazyfli
 
 ### Compiling the Crazyflie Client
 This is the Crazyflie client and will determine the channel ID of the quadcopter. See [here](https://github.com/bitcraze/crazyflie-clients-python) if you're unable to compile.
+
 1. `cd crazyflie-clients-python`
 1. `pip install -e .`
 1. `/opt/local/bin/python3.4 bin/cfclient`
