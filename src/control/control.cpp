@@ -28,7 +28,7 @@
 
 // FLYING GUIDE
 
-// 1. run script ./flyme.sh in top directory
+// 1. run script ./quickstartup.sh in top directory
 // 2. press enter to start up copter- keep leap clear of hands
 // 3. bring one hand (NOTE: spread fingers of dominant hand) over the leap in a low position
 // 4. slowly raise the hand to reach the desired altitude

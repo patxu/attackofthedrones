@@ -53,15 +53,19 @@ This is the Crazyflie client and will determine the channel ID of the quadcopter
 1. Set this channel ID in `control.cpp` line 589
 
 ### Compiling our Client
+Note: you can skip this step if you already know everything compiles
 1. `cd bin`
 1. `cmake ..`
+1. `make`
 
 ### Run
-1. `./flyme.sh`
+1. `./quickstartup.sh`- this also compiles the client (above)
 1. stay clear of the Leap
 1. press `enter` to start up copter
 1. bring one hand with spread fingers about 5cm over the Leap
 1. slowly raise your hand and the copter will rise
+
+## Flying Controls
 
 ### State Overview
 
