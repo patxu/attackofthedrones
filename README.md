@@ -17,7 +17,8 @@ Try following the [Crazyflie startup guide](https://github.com/bitcraze/crazyfli
   - [Install if needed](http://www.macports.org/install.php)
   - Otherwise, upgrade:
     ```
-    sudo port selfupdate  
+    sudo port selfupdate
+    
     sudo port upgrade outdated
     ```
   - open a new terminal window to use macports
