@@ -10,15 +10,21 @@ The project focused on flying a [Crazyflie 1.0](https://www.bitcraze.io/crazyfli
 The nanocopters run an embedded OS named RTOS. We focused on writing the code that would allow the motion sensor to communicate with the nanocopter. Some pieces of code were supplied to us.
 
 ## Getting Started
-Try following the [Crazyflie startup guide](https://github.com/bitcraze/crazyflie-clients-python/blob/master/README.md). This didn't fully work for me, so I document my setup below. Follow at your own risk!
+
+### Cloning
+We use submodules, so use the following command to include those when you clone:
+```
+git clone --recursive https://github.com/patxu/attackofthedrones
+```
 
 ### Installation (using MacPorts)
+Try following the [Crazyflie startup guide](https://github.com/bitcraze/crazyflie-clients-python/blob/master/README.md). This didn't fully work for me, so I document my setup process below. Follow at your own risk!
 1. macports (package installer)
   - [Install if needed](http://www.macports.org/install.php)
   - Otherwise, upgrade:
+  
     ```
     sudo port selfupdate
-    
     sudo port upgrade outdated
     ```
   - open a new terminal window to use macports
