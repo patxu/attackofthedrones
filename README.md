@@ -19,10 +19,11 @@ git clone --recursive https://github.com/patxu/attackofthedrones
 
 ### Installation (using MacPorts)
 Try following the [Crazyflie startup guide](https://github.com/bitcraze/crazyflie-clients-python/blob/master/README.md). This didn't fully work for me, so I document my setup process below. Follow at your own risk!
+
 1. macports (package installer)
   - [Install if needed](http://www.macports.org/install.php)
   - Otherwise, upgrade:
-  
+
     ```
     sudo port selfupdate
     sudo port upgrade outdated
